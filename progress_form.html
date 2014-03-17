@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("#reg_form").keyup(function(){
+			var numValid=0;
+			$("#reg_form input[required]").each(function(){
+				if (this.validity.valid)
+					{ numValid++; }
+			});
+
+			var prog = $("#progress") , progMsg = $("#progress_message");
+			if(numValid==1)
+				{
+					prog.attr("value","25");
+					progMsg.text("25 % Well begun is half done!");
+				}
+				if(numValid==2)
+				{
+					prog.attr("value","50");
+					progMsg.text("50 % Great! just a bit left!");
+				}
+				if(numValid==3)
+				{
+					prog.attr("value","75");
+					progMsg.text("75 % Almost there!");
+				}
+				if(numValid==4)
+				{
+					prog.attr("value","100");
+					progMsg.text("100 % You did it!! :)");
+				}
+
+	});
+
+});
+
+</script>
+<script>
+$(document).ready(function(){
+  $("form").submit(function(){
+    alert("Details have been Submitted");
+  });
+});
+</script>
+</head>
+<body>
+	<div align="center" style="border:2px solid grey; width:400px ; margin-left:450px ;">
+
+<h2>Registration Form</h2><hr>
+
+		Your progress: <progress max="100" value="0" id="progress"></progress> <div id="progress_message">0 % :(</div>
+<hr>
+<form id="reg_form" action="" method="POST">
+
+E-mail: <input required type="email" name="email" id="email" autocomplete="off"><br> 
+
+Date of Birth: <input required type="date" name="dob" id="dob" autocomplete="off"><br>
+
+Mobile No.:<input required id="phone" type="tel" name="phone" pattern="[0-9]{10}" title="Only 10 digit Numeric!" autocomplete="off"><br>
+
+<!-- input datalist-->
+Blood Group:<input required id="bgroup" name="bgroup" list="blood_groups" autocomplete="off">  <!-- input datalist-->
+<datalist id="blood_groups">
+	<option value="A+">
+	<option value="B+">
+	<option value="AB+">
+	<option value="O+">
+	<option value="A-">
+	<option value="B-">
+</datalist><br>
+
+<input  type="submit">
+</form>
+</div>
+</body>
+</html>
